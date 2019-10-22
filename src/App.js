@@ -3,50 +3,44 @@ import Details from "./components/details/Details";
 
 export default class App extends Component {
     state = {
-        selected: {data: {}},
-        list: []
+        selected: {
+            data: {}
+        },
     };
 
-    // searchHandler(e) {
-    //     this.setState({
-    //         selected: e.target.value
-    //     })
-    // };
+    componentDidMount() {
 
-    componentDidMount(): void {
-        const API_KEY = "b6907d289e10d714a6e88b30761fae22";
+        const API_KEY = "e8d8f05325053081806d1b5d75196abf";
         const city = "London";
-        // const country = "US";
         const cors = "https://cors-anywhere.herokuapp.com/";
-        fetch(`${cors}https://samples.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+        fetch(`${cors}http://samples.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`)
             .then(resp => resp.json())
-            .then(results => {
-                console.log(results);
-                const {main, wind, dt, name, weather} = results;
-                const {humidity, pressure, temp_min, temp_max, temp} = main;
-                const {main: main1, icon} = weather[0];
+            .then(({list}) => {
+                const {main, weather, wind, dt_txt} = list[0];
                 this.setState({
                     selected: {
                         data: {
-                            city: name,
+                            city: "London",
                             day: "Today",
-                            date: dt,
-                            icon: icon,
-                            type: main1,
-                            averageTemp: `${temp}°C`,
-                            minTemp: `${temp_min}°C`,
-                            maxTemp: `${temp_max}°C`,
-                            humidity: `${humidity}%`,
+                            date: dt_txt,
+                            iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
+                            type: weather[0].main,
+                            averageTemp: `${main.temp}°C`,
+                            minTemp: `${main.temp_min}°C`,
+                            maxTemp: `${main.temp_max}°C`,
+                            humidity: `${main.humidity}%`,
                             Wind: `${wind.speed} km/h`,
-                            Pressure: `${pressure} hpa`
+                            Pressure: `${main.pressure} hpa`
                         }
                     }
                 });
             })
             .catch(err => console.error(err));
+
     }
 
     render() {
+
         return (
             <div>
                 <h1>weather app</h1>
