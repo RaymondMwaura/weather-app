@@ -20,7 +20,7 @@ export default class App extends Component {
                 this.setState({
                     selected: {
                         data: {
-                            city: "London",
+                            city,
                             day: "Today",
                             date: dt_txt,
                             iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
