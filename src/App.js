@@ -18,6 +18,7 @@ export default class App extends Component {
 
   handleClick(data){
     console.log('HERE COMES THE RESULT: ', data)
+    
   }
   
   componentDidMount() {
