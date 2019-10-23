@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import NavSearch from  './components/navbar';
+import cities from './components/capitalcities';
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <h1>weather app</h1>
+        <NavSearch cities={cities}/>
       </div>
     )
   }
