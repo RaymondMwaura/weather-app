@@ -1,26 +1,34 @@
 import React from 'react'
 
-export default function MobileDays() {
+export default function MobileDays(props) {
+
+    // retrieving weather data passed from props
+    const weather = props.weather
+    
+    // console.log(weather)
+
+    // handling the event when user click a certain day
+    const onDayClick = (e, item) => {
+
+        // prevent default link click behaviour
+        e.preventDefault()
+
+        // Calling parent component click handler, passed from props
+        props.handleClick(item)
+    }
+
+
     return (
         <div>
-            <button onClick={this.props.handleClick} value="true" >Click</button>
-            <div className="days">
+            <div className='days"'>
                 <ul>
-                    <li>
-                        <a href="" >Monday</a>
-                    </li>
-                    <li>
-                        <a href="" >Tuesday</a>
-                    </li>
-                    <li>
-                        <a href="" >Wednesday</a>
-                    </li>
-                    <li>
-                        <a href="" >Thursday</a>
-                    </li>
-                    <li>
-                        <a href="" >Friday</a>
-                    </li>
+                    {   // looping through five days weather data
+                        weather.map((item) =>
+                            <li key={item.dt}>
+                                <a href="javascript(void)" onClick={ (e) => onDayClick(e, item) }>{ item.dt }</a>
+                            </li>
+                        )
+                    }
                 </ul>
             </div>
         </div>

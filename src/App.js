@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {filterData} from './helpers/filterWeather'
+import MobileDays from './components/MobileDays';
 
 
 
@@ -13,6 +14,10 @@ export default class App extends Component {
       city: 'Kigali',
     };
     
+  }
+
+  handleClick(data){
+    console.log('HERE COMES THE RESULT: ', data)
   }
   
   componentDidMount() {
@@ -36,11 +41,16 @@ export default class App extends Component {
     } else {
       // const weatherList = filterData(weather.list)
        const weatherList = weather && filterData(weather.list);
-       console.log(weatherList);
+      
+       // console.log(weatherList);
        
     return (
       <div>
         <h1>weather app</h1>
+
+        {/* small screen day component, passing weather data and day click handler  */}
+        <MobileDays weather={weatherList} handleClick={this.handleClick}></MobileDays>
+
       </div>
     )
     }
