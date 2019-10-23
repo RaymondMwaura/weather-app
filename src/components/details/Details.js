@@ -7,11 +7,11 @@ Details.propTypes = {
 
 function Details({selected}) {
     return selected.data.city ? (
-        <div>
-            <h1>{selected.data.city}</h1>
-            <h3>{selected.data.day}</h3>
-            <p>{selected.data.date}</p>
-            <div>
+        <div className="detailed-day">
+            <h1 className="city-name">{selected.data.city}</h1>
+            <h3 className="selected-day-name">{selected.data.day}</h3>
+            <p className="curr">{selected.data.date}</p>
+            <div className="weather-type">
                 <img src={selected.data.iconUrl} alt=""/>
                 <span>{selected.data.type}</span>
             </div>
