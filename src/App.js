@@ -130,12 +130,15 @@ export default class App extends Component {
       return (
         <div>
           <h1>weather app</h1>
-          {/* small screen day component, passing weather data and day click handler  */}
-          <MobileDays weather={weatherList} handleClick={this.handleClick}></MobileDays>
+          
           <BackgroundImage className='layer' list={weatherList[0]}>
+              
             <NavSearch setCity={this.setSearchedCity} cities={cities}/>
+            {/* small screen day component, passing weather data and day click handler  */}
+            <MobileDays weather={weatherList} handleClick={this.handleClick}></MobileDays>
             <Details selected={this.state.selected}/>
             {/*/!*<List list={this.state.list}/>*!/*/}
+            
           </BackgroundImage>
         </div>
       )
