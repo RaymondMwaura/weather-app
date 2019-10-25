@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {filterData} from './helpers/filterWeather'
 import MobileDays from './components/MobileDays';
+import Test from './components/Test'
 
 
 
@@ -15,13 +16,24 @@ export default class App extends Component {
       position: {
         latitude: null,
         longtitude: null,
-      }
+      },
+      selected: {}
     };
-    
+
+    this.handleClick = this.handleClick.bind(this)
+    this.selected = {};
+
   }
 
-  handleClick(data) {
+
+  handleClick = (data) => {
+    
+    const {main, weather, wind, dt_txt} = data;
+    const city = 'Kigali'
+    
     console.log(data);
+    // this.selected = data;
+    this.setState({city: 'kigalis'})
   }
   
   setSearchedCity = (searchedCity) => {
@@ -69,12 +81,11 @@ export default class App extends Component {
       return <h1>Loading...</h1>
     } else {
       // const weatherList = filterData(weather.list)
-      const weatherList = weather && filterData(weather.list);
-         
+      const weatherList = weather && filterData(weather.list); 
       return (
         <div>
           <h1>weather app</h1>
-
+          <Test day></Test>
           {/* small screen day component, passing weather data and day click handler  */}
           <MobileDays weather={weatherList} handleClick={this.handleClick}></MobileDays>
 
