@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import NavSearch from './components/navbar';
 import cities from './components/capitalcities';
-import {convertTime, filterData} from './helpers/filterWeather'
+import {convertTemperature, convertTime, filterData} from './helpers/filterWeather'
 import BackgroundImage from './components/BackgroundImage';
 import Details from "./components/details/Details";
-import { filterData } from './helpers/filterWeather';
 import Load5Days from './components/Load5Days/Load5Days';
 
 
@@ -44,9 +43,9 @@ export default class App extends Component {
                             date: dt_txt,
                             iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
                             type: weather[0].main,
-                            averageTemp: `${main.temp}°C`,
-                            minTemp: `${main.temp_min}°C`,
-                            maxTemp: `${main.temp_max}°C`,
+                            averageTemp: `${convertTemperature(main.temp)}°C`,
+                            minTemp: `${convertTemperature(main.temp_min)}°C`,
+                            maxTemp: `${convertTemperature(main.temp_max)}°C`,
                             humidity: `${main.humidity}%`,
                             Wind: `${wind.speed} km/h`,
                             Pressure: `${main.pressure} hpa`
@@ -56,6 +55,10 @@ export default class App extends Component {
                 })
             })
     };
+
+    handleSelectedDay(e){
+
+    }
 
     async componentDidMount() {
         const geo = navigator.geolocation;
@@ -91,9 +94,9 @@ export default class App extends Component {
                                     date: dt_txt,
                                     iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
                                     type: weather[0].main,
-                                    averageTemp: `${main.temp}°C`,
-                                    minTemp: `${main.temp_min}°C`,
-                                    maxTemp: `${main.temp_max}°C`,
+                                    averageTemp: `${convertTemperature(main.temp)}°C`,
+                                    minTemp: `${convertTemperature(main.temp_min)}°C`,
+                                    maxTemp: `${convertTemperature(main.temp_max)}°C`,
                                     humidity: `${main.humidity}%`,
                                     Wind: `${wind.speed} km/h`,
                                     Pressure: `${main.pressure} hpa`
@@ -118,8 +121,10 @@ export default class App extends Component {
             return (
                 <BackgroundImage className='layer' list={weatherList[0]}>
                     <NavSearch setCity={this.setSearchedCity} cities={cities}/>
-                    <Details selected={this.state.selected}/>
-                    <Load5Days weatherData={weatherList} />
+                    <div className="weather-data">
+                        <Details selected={this.state.selected}/>
+                        <Load5Days weatherData={weatherList} />
+                    </div>
                 </BackgroundImage>
             )
         }
