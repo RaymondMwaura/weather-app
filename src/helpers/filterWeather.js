@@ -16,7 +16,7 @@ const convertTemperature = (tempInKelvins) => {
  * @param {*} unixTime - unix time
  * @returns {*} - containing day, month and year
  */
-const convertTime = (unixTime) => {
+export const convertTime = (unixTime) => {
     const date = new Date(unixTime*1000);
     const dateArr = date.toDateString().split(" ")
     return {

@@ -1,0 +1,56 @@
+:root{
+    --light-text: white;
+    --dark-text: grey;
+}
+*{
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    color: var(--dark-text);
+    margin: 0;
+    padding: 0;
+    line-height: 2em;
+}
+/* DETAILED COMPONENT */
+.detailed-day {
+    background-color: rgba(208, 212, 207, 0.45);
+    width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px;
+}
+
+.city-name {
+    color: var(--light-text);
+    font-size: 40px;
+}
+.selected-day-name {
+    font-size: 30px;
+}
+
+.curr {
+    font-size: 12px;
+}
+.weather-type {
+    vertical-align: middle;
+}
+.weather-type > img,
+.weather-type >  span {
+    height: 70px;
+    font-size: 25px;
+}
+
+ul {
+    list-style: none;
+}
+
+@media only screen
+and (max-width : 400px) {
+    /* DETAILED COMPONENT */
+    .detailed-day {
+        width: 100%;
+        height: calc(100% - 40px);
+        margin: 0;
+        border-radius: 0;
+    }
+}
