@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
-import './App.css'
+import React, { Component } from 'react';
+import NavSearch from  './components/navbar';
+import cities from './components/capitalcities';
 import {filterData} from './helpers/filterWeather'
 import BackgroundImage from './components/BackgroundImage';
 import {filterData} from './helpers/filterWeather'
-
-
 
 
 export default class App extends Component {
@@ -29,11 +28,10 @@ export default class App extends Component {
 
   async componentDidMount() {
     const geo = navigator.geolocation;
-    if (geo && this.state.city.length === 0) {
+    if (geo && this.state.city === '') {
       const position = new Promise((resolve, reject)=>{
 
         geo.getCurrentPosition(pos => {
-          console.log("to be resolved", this.state)
 
           resolve(this.setState({
             position: {
@@ -62,7 +60,7 @@ export default class App extends Component {
 
   render() {
     const { weather, isLoading } = this.state
-    console.log(weather);
+    
     
     if(isLoading) {
       return <h1>Loading...</h1>
@@ -71,7 +69,7 @@ export default class App extends Component {
        
     return (
       <BackgroundImage className='layer' list={weatherList[0]}>
-
+      <NavSearch setCity={this.setSearchedCity} cities={cities}/>
       </BackgroundImage>
     )
     }
