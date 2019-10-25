@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+import './App.css'
 import {filterData} from './helpers/filterWeather'
+import BackgroundImage from './components/BackgroundImage';
+import {filterData} from './helpers/filterWeather'
+
 
 
 
@@ -63,15 +67,12 @@ export default class App extends Component {
     if(isLoading) {
       return <h1>Loading...</h1>
     } else {
-      // const weatherList = filterData(weather.list)
        const weatherList = weather && filterData(weather.list);
-       console.log(weatherList);
-       console.log(this.weather);
        
     return (
-      <div>
-        <h1>weather app</h1>
-      </div>
+      <BackgroundImage className='layer' list={weatherList[0]}>
+
+      </BackgroundImage>
     )
     }
     
