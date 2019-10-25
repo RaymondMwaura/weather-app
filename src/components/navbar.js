@@ -33,7 +33,10 @@ export default class NavSearch extends React.Component {
         }
         return(
             <ul>
-                {matching.map((item) => <li onClick ={() => this.match(item)}>{item}</li>)}
+                {matching.map((item) => <li onClick ={() => {
+                    this.props.setCity(item);
+                    return this.match(item)}
+                    }>{item}</li>)}
             </ul>
         );
         
@@ -44,7 +47,7 @@ export default class NavSearch extends React.Component {
         const { text } = this.state;
 
          return (
-             <nav>
+             <nav className="NavSearch">
                  <input value={text} onChange= {this.onTextChanged} type="text"/>
                  {this.renderMatching()}
              </nav>
