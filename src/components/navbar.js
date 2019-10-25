@@ -33,7 +33,7 @@ export default class NavSearch extends React.Component {
         }
         return(
             <ul>
-                {matching.map((item) => <li onClick ={() => {
+                {matching.map((item, i) => <li key={i} onClick ={() => {
                     this.props.setCity(item);
                     return this.match(item)}
                     }>{item}</li>)}

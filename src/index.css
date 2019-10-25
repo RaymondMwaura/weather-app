@@ -1,14 +1,18 @@
+:root{
+    --light-text: white;
+    --dark-text: grey;
+}
 *{
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
-    color: grey;
+    color: var(--dark-text);
     margin: 0;
     padding: 0;
     line-height: 2em;
 }
 /* DETAILED COMPONENT */
 .detailed-day {
-    background-color: rgba(124, 128, 123, 0.2);
+    background-color: rgba(208, 212, 207, 0.45);
     width: 300px;
     padding: 20px;
     border-radius: 5px;
@@ -17,7 +21,7 @@
 }
 
 .city-name {
-    color: white;
+    color: var(--light-text);
     font-size: 40px;
 }
 .selected-day-name {

@@ -6,7 +6,7 @@ Details.propTypes = {
 };
 
 function Details({selected}) {
-    return selected.data.city ? (
+    return (
         <div className="detailed-day">
             <h1 className="city-name">{selected.data.city}</h1>
             <h3 className="selected-day-name">{selected.data.day}</h3>
@@ -45,7 +45,7 @@ function Details({selected}) {
                 </ul>
             </div>
         </div>
-    ) : <span>Loading...</span>;
+    );
 }
 
 export default Details;
