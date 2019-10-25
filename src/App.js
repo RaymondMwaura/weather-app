@@ -3,6 +3,8 @@ import NavSearch from  './components/navbar';
 import cities from './components/capitalcities';
 import {filterData} from './helpers/filterWeather'
 import BackgroundImage from './components/BackgroundImage';
+import {filterData} from './helpers/filterWeather'
+
 
 export default class App extends Component {
 
@@ -58,13 +60,12 @@ export default class App extends Component {
 
   render() {
     const { weather, isLoading } = this.state
-    console.log(weather);
+    
     
     if(isLoading) {
       return <h1>Loading...</h1>
     } else {
        const weatherList = weather && filterData(weather.list);
-       console.log(this.state.city);
        
     return (
       <BackgroundImage className='layer' list={weatherList[0]}>
