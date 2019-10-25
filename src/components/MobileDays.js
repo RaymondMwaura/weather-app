@@ -1,4 +1,5 @@
 import React from 'react'
+import './components/mobiledays.css'
 
 export default function MobileDays(props) {
     const weather = props.weather
