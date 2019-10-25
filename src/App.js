@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import MobileDays from './components/MobileDays';
 import NavSearch from './components/navbar';
 import cities from './components/capitalcities';
-import {convertTime, filterData} from './helpers/filterWeather'
+import {convertTemperature, convertTime, filterData} from './helpers/filterWeather'
 import BackgroundImage from './components/BackgroundImage';
 import Details from "./components/details/Details";
+import Load5Days from './components/Load5Days/Load5Days';
 
 
 export default class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -63,85 +63,115 @@ export default class App extends Component {
                 Wind: `${wind.speed} km/h`,
                 Pressure: `${main.pressure} hpa`
               }
-            },
-            isLoading: false
-          })
-        })
-  };
-
-  async componentDidMount() {
-    const geo = navigator.geolocation;
-
-    if (geo) {
-      const position = new Promise((resolve, reject) => {
-
-        geo.getCurrentPosition(pos => {
-
-          resolve(this.setState({
-            position: {
-              latitude: (pos.coords.latitude).toFixed(1),
-              longitude: (pos.coords.longitude).toFixed(1),
             }
-          }))
-        })
-      });
-      await position.then(state => {
-        const API = `http://api.openweathermap.org/data/2.5/forecast?lat=${this.state.position.latitude}&lon=${this.state.position.longitude}&appid=047ef33a4d9c38d3dddaa4b631c96d45`;
+          })
+      })
+    }
+
+    setSearchedCity = (searchedCity) => {
+        this.setState({city: searchedCity});
+        // console.log(this.state.city)
+        const API = `http://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&appid=047ef33a4d9c38d3dddaa4b631c96d45`;
         this.setState({isLoading: true});
         fetch(API)
             .then(response => response.json())
             .then(data => {
-              const {main, weather, wind, dt_txt, dt} = data.list[0];
-              this.setState({
-                weather: data,
-                city: data.city.name,
-                isLoading: false,
-                selected: {
-                  data: {
-                    city: data.city.name,
-                    day: convertTime(dt).day,
-                    date: dt_txt,
-                    iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
-                    type: weather[0].main,
-                    averageTemp: `${main.temp}°C`,
-                    minTemp: `${main.temp_min}°C`,
-                    maxTemp: `${main.temp_max}°C`,
-                    humidity: `${main.humidity}%`,
-                    Wind: `${wind.speed} km/h`,
-                    Pressure: `${main.pressure} hpa`
-                  }
-                }
-              })
+                const {main, weather, wind, dt_txt, dt} = data.list[0];
+                this.setState({
+                    weather: data,
+                    city: this.state.city,
+                    selected: {
+                        data: {
+                            city: this.state.city,
+                            day: convertTime(dt).day,
+                            date: dt_txt,
+                            iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
+                            type: weather[0].main,
+                            averageTemp: `${convertTemperature(main.temp)}°C`,
+                            minTemp: `${convertTemperature(main.temp_min)}°C`,
+                            maxTemp: `${convertTemperature(main.temp_max)}°C`,
+                            humidity: `${main.humidity}%`,
+                            Wind: `${wind.speed} km/h`,
+                            Pressure: `${main.pressure} hpa`
+                        }
+                    },
+                    isLoading: false
+                })
             })
-      })
+    };
+
+    handleSelectedDay(e){
+
     }
-  }
+
+    async componentDidMount() {
+        const geo = navigator.geolocation;
+
+        if (geo) {
+            const position = new Promise((resolve, reject) => {
+
+                geo.getCurrentPosition(pos => {
+
+                    resolve(this.setState({
+                        position: {
+                            latitude: (pos.coords.latitude).toFixed(1),
+                            longitude: (pos.coords.longitude).toFixed(1),
+                        }
+                    }))
+                })
+            });
+            await position.then(state => {
+                const API = `http://api.openweathermap.org/data/2.5/forecast?lat=${this.state.position.latitude}&lon=${this.state.position.longitude}&appid=047ef33a4d9c38d3dddaa4b631c96d45`;
+                this.setState({isLoading: true});
+                fetch(API)
+                    .then(response => response.json())
+                    .then(data => {
+                        const {main, weather, wind, dt_txt, dt} = data.list[0];
+                        this.setState({
+                            weather: data,
+                            city: data.city.name,
+                            isLoading: false,
+                            selected: {
+                                data: {
+                                    city: data.city.name,
+                                    day: convertTime(dt).day,
+                                    date: dt_txt,
+                                    iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
+                                    type: weather[0].main,
+                                    averageTemp: `${convertTemperature(main.temp)}°C`,
+                                    minTemp: `${convertTemperature(main.temp_min)}°C`,
+                                    maxTemp: `${convertTemperature(main.temp_max)}°C`,
+                                    humidity: `${main.humidity}%`,
+                                    Wind: `${wind.speed} km/h`,
+                                    Pressure: `${main.pressure} hpa`
+                                }
+                            }
+                        })
+                    })
+            })
+        }
+    }
+    
+    render() {
+        const {weather, isLoading} = this.state;
 
 
-  render() {
-    const {weather, isLoading} = this.state;
-    
-    
-    if(isLoading) {
-      return <h1>Loading...</h1>
-    } else {
-      // const weatherList = filterData(weather.list)
-      const weatherList = weather && filterData(weather.list); 
-      return (
-        <div>
-          <h1>weather app</h1>
-          
-          <BackgroundImage className='layer' list={weatherList[0]}>
-              
-            <NavSearch setCity={this.setSearchedCity} cities={cities}/>
-            {/* small screen day component, passing weather data and day click handler  */}
-            <MobileDays weather={weatherList} handleClick={this.handleClick}></MobileDays>
-            <Details selected={this.state.selected}/>
-            {/*/!*<List list={this.state.list}/>*!/*/}
-            
-          </BackgroundImage>
-        </div>
-      )
+        if(isLoading) {
+            return <h1>Loading...</h1>
+        } else {
+            const weatherList = weather && filterData(weather.list);
+
+            return (
+                <BackgroundImage className='layer' list={weatherList[0]}>
+                    <NavSearch setCity={this.setSearchedCity} cities={cities}/>
+                    <MobileDays weather={weatherList} handleClick={this.handleClick}></MobileDays>
+                    <div className="weather-data">
+                        <Details selected={this.state.selected}/>
+                        <Load5Days weatherData={weatherList} />
+                    </div>
+                </BackgroundImage>
+            )
+        }
+
     }
-  }
 }

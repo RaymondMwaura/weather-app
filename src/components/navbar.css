@@ -6,7 +6,7 @@
 .NavSearch{
     width:  100%;
     border: 1px solid grey;
-    min-height: 8vh;
+    min-height: 70px;
     background-color: rgb(0,0,0,0.5);
     box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 4px 1px rgba(0,0,0,.18);
     font-family: Arial, Helvetica, sans-serif;
@@ -15,7 +15,7 @@
     
 }
 .NavSearch input{
-    width: 100%;
+    /*width: 100%;*/
     border-radius: 21PX;
     border: none;
     color: #14171a;
@@ -27,8 +27,8 @@
     outline: none;
     position: absolute;
     left: 70%;
-    max-height: 100px;
-    overflow: scroll;
+    height: 30px;
+
 }
 .NavSearch ul{
     list-style-type: none; 
@@ -43,7 +43,9 @@
     background: whitesmoke;
     width: 150px;
     cursor: pointer;
-    
+    z-index: 1000;
+    max-height: 70%;
+    overflow: scroll;
 }
 .NavSearch ul::before{
     content: "";

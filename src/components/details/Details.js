@@ -32,14 +32,17 @@ function Details({selected}) {
                 <ul>
                     <li>
                         <span>{selected.data.humidity}</span>
+                        <span>  -  </span>
                         <span>Humidity</span>
                     </li>
                     <li>
                         <span>{selected.data.Wind}</span>
+                        <span>  -  </span>
                         <span>Wind</span>
                     </li>
                     <li>
                         <span>{selected.data.Pressure}</span>
+                        <span>  -  </span>
                         <span>Pressure</span>
                     </li>
                 </ul>

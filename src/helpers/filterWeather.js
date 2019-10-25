@@ -16,7 +16,7 @@ const convertTemperature = (tempInKelvins) => {
  * @param {*} unixTime - unix time
  * @returns {*} - containing day, month and year
  */
-export const convertTime = (unixTime) => {
+const convertTime = (unixTime) => {
     const date = new Date(unixTime*1000);
     const dateArr = date.toDateString().split(" ")
     return {
@@ -46,6 +46,7 @@ const filterData = (days) => {
   };
 
 export {
-  convertTemperature,
-  filterData
+    convertTime,
+      convertTemperature,
+      filterData
 };
