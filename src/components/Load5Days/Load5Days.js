@@ -1,15 +1,17 @@
 import React from 'react';
 import { convertTemperature } from '../../helpers/filterWeather';
+import './Load5Days.css';
 
-const OneDay = ({ weatherData }) => {
-  const data = weatherData.weatherData.map((day) => (
-    <tr key={day.dt}>
-      <td>{day.dt}</td>
+const Load5Days = ({ weatherData }) => {
+  const data = weatherData.map((day) => (
+    <tr key={day.dt.day}>
+      <td>{day.dt.day}</td>
       <td><img src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt={day.weather[0].description} /></td>
       <td>
         {convertTemperature(day.main.temp)}
         {' '}
-        <sup>o</sup>
+        <sup className="temperatureSymbol">o</sup>
+        C
       </td>
       <td>{day.weather[0].description}</td>
       <td>
@@ -23,12 +25,8 @@ const OneDay = ({ weatherData }) => {
       </td>
     </tr>
   ));
-  return data;
-};
 
-const Load5Days = (props) => (
-  <div>
-    <div>6 day weather forecast</div>
+return (  <div>
     <table className="showDays">
       <thead>
         <tr>
@@ -42,10 +40,10 @@ const Load5Days = (props) => (
         </tr>
       </thead>
       <tbody>
-        <OneDay weatherData={props} />
+        {data}
       </tbody>
     </table>
   </div>
 );
-
+}
 export default Load5Days;
