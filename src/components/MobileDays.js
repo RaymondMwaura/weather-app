@@ -1,22 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react'
+import './mobiledays.css'
 
-export default function MobileDays(props) {
-    const weather = props.weather
+export default class MobileDays extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            day: ''
+        };
+        this.weather = this.props.weather;
+        this.date = new Date();
+        this.today = this.date.toDateString().split(" ")[0]
+         this.current = this.today;
 
-    const onDayClick = (e, item) => {
-        e.preventDefault()
-        props.handleClick(item)
-    }
+         console.log("weeeather", this.weather);
+      }
 
+    // onDayClick = (e, item) => {
+    //     e.preventDefault()
+    //     this.props.handleClick(item)
 
-    return (
-        <div>
-            <div className='days"'>
-                <ul>
+    // }
+
+    
+    
+
+    render (){
+        return (<div>
+            <div className="mobile-days">
+                <ul className="ul-days">
                     {   // looping through five days weather data
-                        weather.map((item) =>
-                            <li key={item.dt}>
-                                <a href="javascript(void)" onClick={ (e) => onDayClick(e, item) }>{ item.dt }</a>
+                        this.weather.map((item) =>
+                            <li key={item.dt.day} className="li-day"  onClick={ (e) => { 
+                                    e.preventDefault()
+                                    this.props.handleClick(item)
+                                }}>
+                                <a id={item} className={item.dt.day === this.current ? 'active' : ''} href="javascript(void)" >{ item.dt.day }</a>
                             </li>
                         )
                     }
@@ -24,4 +42,5 @@ export default function MobileDays(props) {
             </div>
         </div>
     )
+}
 }
