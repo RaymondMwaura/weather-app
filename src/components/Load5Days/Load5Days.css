@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+.showDays tbody tr:hover{
+    background-color: #d3d3d3;
+}
+.showDays {
+    margin-top: 40px;
+    /*width: 55%; */
+    font-family: 'Roboto', sans-serif;
+    border-collapse: separate;
+    border-spacing: 0 1.5em;
+    /*background-color: #ffffff;*/
+    /*opacity: 0.5;*/
+    text-transform: capitalize;
+    position: absolute;
+    left: 40%;
+}
+
+img {
+    height: 50px;
+    width: 50px;
+}
+
+tbody tr {
+    background-color: rgba(208, 212, 207, 0.45);
+}
+.showDays td {
+    border: solid 1px #000;
+    border-style: solid none;
+    padding-left: 20px;
+}
+.showDays td:first-child {
+    border-left-style: solid;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.showDays td:last-child {
+    border-right-style: solid;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.showDays th {
+    color: #ffc400;
+    font-weight: bold;
+    text-shadow: 1px #000000;
+    text-align: left;
+    padding-left: 20px;
+}
+.temperatureSymbol {
+    text-transform: lowercase;
+}
+
+/*.showDays {*/
+/*    width: 65%;*/
+/*    font-family: 'Roboto', sans-serif;*/
+/*    text-transform: capitalize;*/
+/*    border-spacing: 0 1.5em;*/
+/*    background-color: #ffffff;*/
+/*    opacity: 0.8;*/
+/*    position: absolute;*/
+/*    left: 30%;*/
+/*    line-height: 1em;*/
+/*}*/
+
+/*img {*/
+/*    height: 50px;*/
+/*    width: 50px;*/
+/*}*/
+
+/*.temperatureSymbol {*/
+/*    text-transform: lowercase;*/
+/*}*/
+/*.showDays th {*/
+/*    color: #ffc400;*/
+/*    font-weight: bold;*/
+/*    text-shadow: 1px #000000;*/
+/*    text-align: left;*/
+/*}*/
+/*.showDays tbody tr {*/
+/*    outline: solid #eeeeee;*/
+/*}*/
+/*.showDays tbody tr td {*/
+/*    padding-top: 0;*/
+/*    padding-left: 5px;*/
+/*    padding-right: 5px;*/
+/*}*/
+/*.showDays tbody tr:hover{*/
+/*    background-color: #d3d3d3;*/
+/*}*/
