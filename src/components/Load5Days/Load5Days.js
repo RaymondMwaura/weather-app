@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {convertTemperature} from '../../helpers/filterWeather';
 import './Load5Days.css';
 
@@ -29,28 +29,26 @@ const Load5Days = ({ weatherData }) => {
         </tr>
       ));
 
-    // useEffect(() => {
-    //     console.log('THESE ARE MY DATA: ', data)
-    // }, [selected]);
+    return (
+        <div>
+            <table className="showDays">
+                <thead>
+                <tr>
+                    <th>Day</th>
+                    <th></th>
+                    <th>Temp</th>
+                    <th>Condition</th>
+                    <th>Cloudiness</th>
+                    <th>Wind speed (m/s)</th>
+                    <th>Humidity</th>
+                </tr>
+                </thead>
+                <tbody>
+                {data}
+                </tbody>
+            </table>
+        </div>
+    );
+};
 
-return (  <div>
-    <table className="showDays">
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th> </th>
-          <th>Temp</th>
-          <th>Condition</th>
-          <th>Cloudiness</th>
-          <th>Wind speed (m/s)</th>
-          <th>Humidity</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data}
-      </tbody>
-    </table>
-  </div>
-);
-}
 export default Load5Days;

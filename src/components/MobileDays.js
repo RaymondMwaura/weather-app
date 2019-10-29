@@ -1,40 +1,39 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import './mobiledays.css'
 
 export default class MobileDays extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            day: ''
+            selected: ""
         };
-        this.weather = this.props.weather;
-        this.date = new Date();
-        this.today = this.date.toDateString().split(" ")[0]
-         this.current = this.today;
+    }
 
-         console.log("weeeather", this.weather);
-      }
+    componentDidMount() {
+        const date = new Date();
+        const today = date.toDateString().split(" ")[0];
+        this.setState({selected: today})
+    }
 
-    // onDayClick = (e, item) => {
-    //     e.preventDefault()
-    //     this.props.handleClick(item)
-
-    // }
-
-    
-    
+    onSelectedDay(i) {
+        this.setState({selected: i.dt.day});
+        this.props.handleSelectedDay(i);
+    }
 
     render (){
+        const {weather} = this.props;
+
         return (<div>
             <div className="mobile-days">
                 <ul className="ul-days">
                     {   // looping through five days weather data
-                        this.weather.map((item) =>
-                            <li key={item.dt.day} className="li-day"  onClick={ (e) => { 
-                                    e.preventDefault()
-                                    this.props.handleClick(item)
-                                }}>
-                                <a id={item} className={item.dt.day === this.current ? 'active' : ''} href="javascript(void)" >{ item.dt.day }</a>
+                        weather.map((item, i) =>
+                            <li key={i} className="li-day" onClick={e => {
+                                e.preventDefault();
+                                this.onSelectedDay(item)
+                            }}>
+                                <span id={item}
+                                      className={item.dt.day === this.state.selected ? 'active' : ''}>{item.dt.day}</span>
                             </li>
                         )
                     }

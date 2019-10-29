@@ -19,7 +19,7 @@
     width: 100%;
 }
 
-.li-day a {
+.li-day span {
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
@@ -31,10 +31,10 @@
     color: #000000;
 }
 
-.li-day a.active {
+.li-day span.active {
     border-bottom: solid 1px #FDB806;
 }
 
-.li-day a:hover {
+.li-day span:hover {
     color: #FDB806;
 }
