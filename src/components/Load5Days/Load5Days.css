@@ -69,12 +69,12 @@ ul.showDaysMobile > li{
     padding: 2%;
 }
 
-ul.showDaysMobile > li > .sm-line > span{
+ul.showDaysMobile > li > .sm-line > span {
     font-weight: bold;
     font-size: 1.2em;
     vertical-align: middle;
 }
-ul.showDaysMobile > li > .sm-line > img{
+ul.showDaysMobile > li > .sm-line > img {
     float: right;
     padding-right: 10%;
     height: 25px;

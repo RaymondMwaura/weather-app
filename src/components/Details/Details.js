@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {convertTime, toTimeStamp} from '../../helpers/filterWeather'
 
 Details.propTypes = {
     selected: PropTypes.any.isRequired
 };
 
 function Details({selected}) {
+    let {date, month, year} = convertTime(toTimeStamp(selected.data.date));
     return (
         <div className="detailed-day">
             <h1 className="city-name">{selected.data.city}</h1>
-            <h3 className="selected-day-name">{selected.data.day}</h3>
-            <p className="curr">{selected.data.date}</p>
+            <h3 className="selected-day-name">Today</h3>
+            <p className="selected-day-date">{month} {date}, {year}</p>
             <div className="weather-type">
                 <img src={selected.data.iconUrl} alt=""/>
                 <span>{selected.data.type}</span>
@@ -32,17 +34,14 @@ function Details({selected}) {
                 <ul>
                     <li>
                         <span>{selected.data.humidity}</span>
-                        <span>  -  </span>
                         <span>Humidity</span>
                     </li>
                     <li>
                         <span>{selected.data.Wind}</span>
-                        <span>  -  </span>
                         <span>Wind</span>
                     </li>
                     <li>
                         <span>{selected.data.Pressure}</span>
-                        <span>  -  </span>
                         <span>Pressure</span>
                     </li>
                 </ul>
