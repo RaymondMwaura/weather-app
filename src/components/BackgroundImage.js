@@ -21,18 +21,10 @@ const BackgroundImage = (props) => {
         backgroundBlendMode: 'lighten',
       };
 
-    const layer = {
-        backgroundColor: 'rgba(248, 247, 216, 0.4)',
-        position: 'absolute',
-        top: '0',
-        left: '0',
-        width: '100%',
-        height: '100%',
-      };
 
     return (
         <div style={themeStyle}>
-            <div style={layer}>
+            <div>
                 {props.children}
             </div>
         </div>

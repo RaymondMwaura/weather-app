@@ -55,11 +55,6 @@ export default class App extends Component {
                 })
             })
     };
-
-    handleSelectedDay(e){
-
-    }
-
     async componentDidMount() {
         const geo = navigator.geolocation;
 
