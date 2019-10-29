@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
+import MobileDays from './components/MobileDays';
 import NavSearch from './components/navbar';
 import cities from './components/capitalcities';
 import {convertTemperature, convertTime, filterData} from './helpers/filterWeather'
@@ -8,20 +9,63 @@ import Load5Days from './components/Load5Days/Load5Days';
 
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      weather: null,
+      isLoading: true,
+      city: '',
+      position: {
+        latitude: null,
+        longtitude: null
+      },
+      selected: {}
+    };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            weather: null,
-            isLoading: true,
-            city: '',
-            position: {
-                latitude: null,
-                longitude: null,
-            },
-            selected: {}
-        };
+    this.handleClick = this.handleClick.bind(this)
+    this.selected = {};
+  }
 
+
+  handleClick = (data) => {
+    
+    const {main, weather, wind, dt_txt} = data;
+    const city = 'Kigali'
+    
+    console.log(data);
+    // this.selected = data;
+    this.setState({city: 'kigalis'})
+  }
+  
+  setSearchedCity = (searchedCity) => {
+    this.setState({city: searchedCity});
+    // console.log(this.state.city)
+    const API = `http://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&appid=047ef33a4d9c38d3dddaa4b631c96d45`;
+    this.setState({isLoading: true});
+    fetch(API)
+        .then(response => response.json())
+        .then(data => {
+          const {main, weather, wind, dt_txt, dt} = data.list[0];
+          this.setState({
+            weather: data,
+            city: this.state.city,
+            selected: {
+              data: {
+                city: this.state.city,
+                day: convertTime(dt).day,
+                date: dt_txt,
+                iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
+                type: weather[0].main,
+                averageTemp: `${main.temp}°C`,
+                minTemp: `${main.temp_min}°C`,
+                maxTemp: `${main.temp_max}°C`,
+                humidity: `${main.humidity}%`,
+                Wind: `${wind.speed} km/h`,
+                Pressure: `${main.pressure} hpa`
+              }
+            }
+          })
+      })
     }
 
     setSearchedCity = (searchedCity) => {
@@ -107,8 +151,7 @@ export default class App extends Component {
             })
         }
     }
-
-
+    
     render() {
         const {weather, isLoading} = this.state;
 
@@ -121,6 +164,7 @@ export default class App extends Component {
             return (
                 <BackgroundImage className='layer' list={weatherList[0]}>
                     <NavSearch setCity={this.setSearchedCity} cities={cities}/>
+                    <MobileDays weather={weatherList} handleClick={this.handleClick}></MobileDays>
                     <div className="weather-data">
                         <Details selected={this.state.selected}/>
                         <Load5Days weatherData={weatherList} />
@@ -128,5 +172,6 @@ export default class App extends Component {
                 </BackgroundImage>
             )
         }
+
     }
 }
