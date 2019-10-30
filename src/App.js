@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import MobileDays from './components/MobileDays';
+import React, { Component } from 'react';
 import NavSearch from './components/navbar';
 import cities from './components/capitalcities';
 import {convertTemperature, convertTime, filterData} from './helpers/filterWeather'
@@ -103,7 +102,7 @@ export default class App extends Component {
             })
         }
     }
-    
+
     render() {
         const {weather, isLoading, isSearching} = this.state;
         const weatherList = weather && filterData(weather.list);
@@ -127,7 +126,6 @@ export default class App extends Component {
             return (
                 <BackgroundImage className='layer' list={weatherList[0]}>
                     <NavSearch setCity={this.setSearchedCity} cities={cities}/>
-                    <MobileDays weather={weatherList} handleClick={this.handleClick}></MobileDays>
                     <div className="weather-data">
                         <Details selected={this.state.selected}/>
                         <Load5Days weatherData={weatherList} />
