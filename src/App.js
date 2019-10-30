@@ -4,7 +4,7 @@ import NavSearch from './components/navbar';
 import cities from './components/capitalcities';
 import {convertTemperature, convertTime, filterData} from './helpers/filterWeather'
 import BackgroundImage from './components/BackgroundImage';
-import Details from "./components/details/Details";
+import Details from "./components/Details/Details";
 import Load5Days from './components/Load5Days/Load5Days';
 import Preloader from './components/Preloader';
 
@@ -56,11 +56,6 @@ export default class App extends Component {
                 })
             })
     };
-
-    handleSelectedDay(e){
-
-    }
-
     async componentDidMount() {
         const geo = navigator.geolocation;
 
