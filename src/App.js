@@ -6,73 +6,30 @@ import {convertTemperature, convertTime, filterData} from './helpers/filterWeath
 import BackgroundImage from './components/BackgroundImage';
 import Details from "./components/details/Details";
 import Load5Days from './components/Load5Days/Load5Days';
+import Preloader from './components/Preloader';
 
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      weather: null,
-      isLoading: true,
-      city: '',
-      position: {
-        latitude: null,
-        longtitude: null
-      },
-      selected: {}
-    };
-
-    this.handleClick = this.handleClick.bind(this)
-    this.selected = {};
-  }
-
-
-  handleClick = (data) => {
-    
-    const {main, weather, wind, dt_txt} = data;
-    const city = 'Kigali'
-    
-    console.log(data);
-    // this.selected = data;
-    this.setState({city: 'kigalis'})
-  }
-  
-  setSearchedCity = (searchedCity) => {
-    this.setState({city: searchedCity});
-    // console.log(this.state.city)
-    const API = `http://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&appid=047ef33a4d9c38d3dddaa4b631c96d45`;
-    this.setState({isLoading: true});
-    fetch(API)
-        .then(response => response.json())
-        .then(data => {
-          const {main, weather, wind, dt_txt, dt} = data.list[0];
-          this.setState({
-            weather: data,
-            city: this.state.city,
-            selected: {
-              data: {
-                city: this.state.city,
-                day: convertTime(dt).day,
-                date: dt_txt,
-                iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
-                type: weather[0].main,
-                averageTemp: `${main.temp}°C`,
-                minTemp: `${main.temp_min}°C`,
-                maxTemp: `${main.temp_max}°C`,
-                humidity: `${main.humidity}%`,
-                Wind: `${wind.speed} km/h`,
-                Pressure: `${main.pressure} hpa`
-              }
-            }
-          })
-      })
+    constructor(props) {
+        super(props);
+        this.state = {
+            weather: null,
+            isLoading: true,
+            isSearching: false,
+            city: '',
+            position: {
+                latitude: null,
+                longitude: null,
+            },
+            selected: {}
+        };
     }
 
     setSearchedCity = (searchedCity) => {
         this.setState({city: searchedCity});
         // console.log(this.state.city)
         const API = `http://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&appid=047ef33a4d9c38d3dddaa4b631c96d45`;
-        this.setState({isLoading: true});
+        this.setState({isSearching: true});
         fetch(API)
             .then(response => response.json())
             .then(data => {
@@ -95,7 +52,7 @@ export default class App extends Component {
                             Pressure: `${main.pressure} hpa`
                         }
                     },
-                    isLoading: false
+                    isSearching: false,
                 })
             })
     };
@@ -153,14 +110,25 @@ export default class App extends Component {
     }
     
     render() {
-        const {weather, isLoading} = this.state;
-
+        const {weather, isLoading, isSearching} = this.state;
+        const weatherList = weather && filterData(weather.list);
 
         if(isLoading) {
-            return <h1>Loading...</h1>
-        } else {
-            const weatherList = weather && filterData(weather.list);
-
+            return <Preloader />
+        } else if (isSearching) {
+          return (
+            <BackgroundImage className='layer' list={weatherList[0]}>
+                  <Preloader>
+                    <NavSearch setCity={this.setSearchedCity} cities={cities}/>
+                    <div className="weather-data">
+                        <Details selected={this.state.selected}/>
+                        <Load5Days weatherData={weatherList} />
+                    </div>
+                    </Preloader>
+              </BackgroundImage>
+        )
+        }
+        else {
             return (
                 <BackgroundImage className='layer' list={weatherList[0]}>
                     <NavSearch setCity={this.setSearchedCity} cities={cities}/>
