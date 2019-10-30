@@ -19,7 +19,7 @@ export default class NavSearch extends React.Component {
              matching = cities.sort().filter(v  => regex.test(v));
         }
         this.setState(() => ({ matching, text: value }));
-    }
+    };
     match (value){
         this.setState(() => ({
             text : value,
@@ -39,7 +39,7 @@ export default class NavSearch extends React.Component {
                     }>{item}</li>)}
             </ul>
         );
-        
+
     }
 
 
@@ -53,5 +53,5 @@ export default class NavSearch extends React.Component {
              </nav>
          )
     }
-    
+
 }

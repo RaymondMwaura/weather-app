@@ -1,5 +1,5 @@
 :root{
-    --light-text: white;
+    --light-text: #C4C4C4;
     --dark-text: #4e4e4e;
 }
 *{
@@ -13,7 +13,7 @@
 /* DETAILED COMPONENT */
 .detailed-day {
     background-color: rgba(208, 212, 207, 0.45);
-    width: 300px;
+    width: 400px;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
@@ -22,15 +22,12 @@
 
 .city-name {
     color: var(--light-text);
-    font-size: 40px;
+    font-size: 60px;
 }
 .selected-day-name {
-    font-size: 30px;
+    font-size: 36px;
 }
 
-.curr {
-    font-size: 12px;
-}
 .weather-type {
     vertical-align: middle;
 }
@@ -38,6 +35,7 @@
 .weather-type >  span {
     height: 70px;
     font-size: 25px;
+    vertical-align: middle;
 }
 
 ul {
@@ -50,8 +48,58 @@ ul {
     width: 100%;
 }
 
-/*Detail, Load5Days {*/
-/*}*/
+.selected-day-date {
+    font-size: 14px;
+}
+
+.weather-type img {
+    width: 100px;
+    height: 100px;
+}
+
+.weather-type span {
+    font-size: 48px;
+}
+
+.detailed-day > h3:nth-child(5) {
+    font-size: 76px;
+    color: var(--light-text);
+    line-height: 90px;
+}
+
+.detailed-day > div:nth-child(6) > div:nth-child(1) > span,
+.detailed-day > div:nth-child(7) > ul > li:nth-child(1) > span:nth-child(1),
+.detailed-day > div:nth-child(7) > ul > li:nth-child(2) > span:nth-child(1),
+.detailed-day > div:nth-child(7) > ul > li:nth-child(3) > span:nth-child(1) {
+    font-size: 18px;
+}
+
+.detailed-day > div:nth-child(6) > div:nth-child(1) > span:nth-child(1),
+.detailed-day > div:nth-child(6) > div:nth-child(1) > span:nth-child(2),
+.detailed-day > div:nth-child(6) > div:nth-child(1) > span:nth-child(3),
+.detailed-day > div:nth-child(7) > ul > li:nth-child(1) > span:nth-child(1),
+.detailed-day > div:nth-child(7) > ul > li:nth-child(2) > span:nth-child(1),
+.detailed-day > div:nth-child(7) > ul > li:nth-child(3) > span:nth-child(1) {
+    color: var(--light-text);
+}
+
+.detailed-day > div:nth-child(7) > ul > li:nth-child(1) > span:nth-child(2),
+.detailed-day > div:nth-child(7) > ul > li:nth-child(2) > span:nth-child(2),
+.detailed-day > div:nth-child(7) > ul > li:nth-child(3) > span:nth-child(2) {
+    font-size: 24px;
+    color: var(--dark-text);
+}
+
+.detailed-day > div:nth-child(7) > ul > li {
+    display: inline-block;
+    width: 30%;
+    margin: 20px 0;
+}
+
+.detailed-day > div:nth-child(7) > ul > li > span {
+    display: block;
+    line-height: 30px;
+}
 
 @media only screen
 and (max-width : 936px) {
@@ -61,6 +109,7 @@ and (max-width : 936px) {
         height: calc(100% - 40px);
         margin: 0;
         border-radius: 0;
+        padding: 0;
     }
 
     .weather-data{
@@ -69,5 +118,55 @@ and (max-width : 936px) {
 
     .showDays {
         left: 2%;
+    }
+
+    /*    THESE ARE */
+    .city-name {
+        font-size: 40px;
+    }
+
+    .selected-day-name {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    #root > div > div > div > div > div.weather-type > span {
+        font-size: 35px;
+    }
+
+    #root > div > div > div > div > div.weather-type > img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .selected-day-date {
+        font-size: 14px;
+    }
+
+    .detailed-day > h3:nth-child(5) {
+        font-size: 60px;
+        line-height: 60px;
+    }
+
+    .detailed-day > div:nth-child(6) > div:nth-child(1) > span,
+    .detailed-day > div:nth-child(7) > ul > li:nth-child(1) > span:nth-child(1),
+    .detailed-day > div:nth-child(7) > ul > li:nth-child(2) > span:nth-child(1),
+    .detailed-day > div:nth-child(7) > ul > li:nth-child(3) > span:nth-child(1) {
+        font-size: 14px;
+    }
+
+    .detailed-day > div:nth-child(7) > ul > li:nth-child(1) > span:nth-child(2),
+    .detailed-day > div:nth-child(7) > ul > li:nth-child(2) > span:nth-child(2),
+    .detailed-day > div:nth-child(7) > ul > li:nth-child(3) > span:nth-child(2) {
+        font-size: 20px;
+    }
+
+    .detailed-day > div:nth-child(7) > ul > li {
+        width: 30%;
+        margin: 10px 0;
+    }
+
+    .detailed-day > div:nth-child(7) > ul > li > span {
+        line-height: 30px;
     }
 }

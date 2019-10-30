@@ -1,17 +1,17 @@
 /**
- * 
+ *
  * @function convertTemperature - coverts kelvins to celcius
- * @param {*} tempInKelvins 
- * @returns celcius degree
+ * @param {*} tempInKelvins
+ * @returns string degree
  */
 const convertTemperature = (tempInKelvins) => {
   const res = tempInKelvins - 273.15;
-  return res.toFixed(1);
+  return res.toFixed(0);
 };
 
 
 /**
- * 
+ *
  * @function convertTime - converts unix time to day, month, year
  * @param {*} unixTime - unix time
  * @returns {*} - containing day, month and year
@@ -21,8 +21,8 @@ const convertTime = (unixTime) => {
     const dateArr = date.toDateString().split(" ")
     return {
         day: dateArr[0],
-        date: dateArr[1],
-        month: dateArr[2],
+        month: dateArr[1],
+        date: dateArr[2],
         year: dateArr[3],
         }
 };
@@ -44,6 +44,16 @@ const filterData = (days) => {
     });
     return daysFiltered;
   };
+
+export const toTimeStamp = (input) => {
+    const parts = input.trim().split(' ');
+    const date = parts[0].split('-');
+    const time = (parts[1] ? parts[1] : '00:00:00').split(':');
+
+    // NOTE:: Month: 0 = January - 11 = December.
+    const d = new Date(date[0], date[1] - 1, date[2], time[0], time[1], time[2]);
+    return d.getTime() / 1000;
+};
 
 export {
     convertTime,
