@@ -36,7 +36,6 @@ const Load5Days = ({ weatherData }) => {
         ))
         const dataMobile = weatherData.map((day, index) => (
             <li className="showDaysMobile-li" key={index}>
-                {/*{day.dt.day}*/}
                 <div className="sm-line">
                     <span>{day.dt.day}</span>
                     <span> </span>
