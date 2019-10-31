@@ -12,8 +12,7 @@ const Load5Days = ({ weatherData }) => {
 
     const isMobile = () => window.screen.width < 600;
 
-    const data = !isMobile() ?
-        weatherData.map((day, index) => (
+    const dataDesktop = weatherData.map((day, index) => (
         <tr className="day" key={index} onClick={() => setSelected(day)}>
           <td>{day.dt.day}</td>
           <td><img src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt={day.weather[0].description} /></td>
@@ -34,9 +33,9 @@ const Load5Days = ({ weatherData }) => {
             %
           </td>
         </tr>
-        )) : weatherData.map((day, index) => (
+        ))
+        const dataMobile = weatherData.map((day, index) => (
             <li className="showDaysMobile-li" key={index}>
-                {/*{day.dt.day}*/}
                 <div className="sm-line">
                     <span>{day.dt.day}</span>
                     <span> </span>
@@ -48,27 +47,30 @@ const Load5Days = ({ weatherData }) => {
             </li>
         ));
 
-    return !isMobile() ? (
-        <div>
-            <table className="showDays">
-                <thead>
-                <tr>
-                    <th>Day</th>
-                    <th></th>
-                    <th>Temp</th>
-                    <th>Condition</th>
-                    <th>Cloudiness</th>
-                    <th>Wind speed (m/s)</th>
-                    <th>Humidity</th>
-                </tr>
-                </thead>
-                <tbody>
-                {data}
-                </tbody>
-            </table>
-        </div>
-    ) : (
-        <ul className="showDaysMobile">{data}</ul>
-    );
+    return (
+        <div className="container">
+            <div className="desktop">
+                <table className="showDays">
+                    <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th></th>
+                        <th>Temp</th>
+                        <th>Condition</th>
+                        <th>Cloudiness</th>
+                        <th>Wind speed (m/s)</th>
+                        <th>Humidity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {dataDesktop}
+                    </tbody>
+                </table>
+            </div>
+            <div className="mobile">
+                <ul className="showDaysMobile">{dataMobile}</ul>
+            </div> 
+        </div>  
+    )
 };
 export default Load5Days;
