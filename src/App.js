@@ -106,7 +106,7 @@ export default class App extends Component {
     render() {
         const {weather, isLoading, isSearching} = this.state;
         const weatherList = weather && filterData(weather.list);
-
+        console.log(window.innerWidth);
         if(isLoading) {
             return <Preloader />
         } else if (isSearching) {

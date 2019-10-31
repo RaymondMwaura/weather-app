@@ -170,3 +170,21 @@ and (max-width : 936px) {
         line-height: 30px;
     }
 }
+
+.mobile {
+    display: block;
+}
+
+.desktop {
+    display: none;
+}
+
+@media only screen and (min-width: 936px) {
+    .mobile {
+        display: none;
+    }
+
+    .desktop {
+        display: block;
+    }
+}
