@@ -15,6 +15,7 @@ export default class App extends Component {
             weather: null,
             isLoading: true,
             isSearching: false,
+            search: '',
             city: '',
             position: {
                 latitude: null,

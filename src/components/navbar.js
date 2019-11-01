@@ -1,5 +1,7 @@
 import React from 'react';
 import './navbar.css';
+import { logo} from '../assets/images';
+
 
 export default class NavSearch extends React.Component {
     constructor (props){
@@ -41,15 +43,20 @@ export default class NavSearch extends React.Component {
         );
 
     }
+    updateSearch = search => {
+        this.setState({ search });
+      };
 
 
     render (){
         const { text } = this.state;
+        const { search } = this.state;
 
          return (
              <nav className="NavSearch">
-                 <input value={text} onChange= {this.onTextChanged} type="text"/>
+                 <input  placeholder="Search a city" onChangeText={this.updateSearch} value={search} onChange= {this.onTextChanged} type="text"/>
                  {this.renderMatching()}
+                 <img className="logo" src={logo}/>
              </nav>
          )
     }

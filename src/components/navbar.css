@@ -5,40 +5,43 @@
 }
 .NavSearch{
     width:  100%;
-    border: 1px solid grey;
     min-height: 70px;
-    background-color: rgb(0,0,0,0.5);
+    background-color:rgb(128,128,128);
     box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 4px 1px rgba(0,0,0,.18);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
-    
-    
+  
+}
+.logo{
+    padding-left: 30px;
+    margin-top: 10px;
+}
+::placeholder{
+    padding-left: 10px;
 }
 .NavSearch input{
-    /*width: 100%;*/
-    border-radius: 21PX;
+    border-radius: 5px;
     border: none;
     color: #14171a;
     font-size: 12px;
     margin-top: 20px;
-    line-height: 10px;
-    width: 150px;
-    box-sizing: border-box;
+    width: 40%;
     outline: none;
     position: absolute;
-    left: 70%;
-    height: 30px;
+    left: 47%;
+    height: 40px;
+    padding-left: 30px;
 
 }
+
 .NavSearch ul{
     list-style-type: none; 
     text-align: left;
     margin: 0;
-    /* padding: 0; */
     padding-right: 100px;
     position: absolute;
-    left: 70%;
-    top: 52px;
+    left: 47%;
+    top: 60px;
     text-overflow: ellipsis;
     background: whitesmoke;
     width: 150px;
