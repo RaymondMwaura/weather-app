@@ -7,3 +7,4 @@ export const tornado = require('./tornado.gif');
 export const fog = require('./fog.gif');
 export const drizzle = require('./drizzle.gif');
 export const dust = require('./dust.gif');
+export const logo = require('./eclipse.png');
