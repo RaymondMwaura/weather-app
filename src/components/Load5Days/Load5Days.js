@@ -15,7 +15,7 @@ const Load5Days = ({ weatherData }) => {
     const dataDesktop = weatherData.map((day, index) => (
         <tr className="day" key={index} onClick={() => setSelected(day)}>
           <td>{day.dt.day}</td>
-          <td><img src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt={day.weather[0].description} /></td>
+          <td><img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt={day.weather[0].description} /></td>
           <td>
             {convertTemperature(day.main.temp)}
             {' '}
@@ -39,7 +39,7 @@ const Load5Days = ({ weatherData }) => {
                 <div className="sm-line">
                     <span>{day.dt.day}</span>
                     <span> </span>
-                    <img src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt={day.weather[0].description} />
+                    <img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt={day.weather[0].description} />
                 </div>
                 <div className="sm-line">Temp: {convertTemperature(day.main.temp)}</div>
                 <div className="sm-line">Wind: {day.wind.speed}</div>

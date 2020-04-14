@@ -28,7 +28,7 @@ export default class App extends Component {
     setSearchedCity = (searchedCity) => {
         this.setState({city: searchedCity});
         // console.log(this.state.city)
-        const API = `http://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&appid=047ef33a4d9c38d3dddaa4b631c96d45`;
+        const API = `https://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&appid=047ef33a4d9c38d3dddaa4b631c96d45`;
         this.setState({isSearching: true});
         fetch(API)
             .then(response => response.json())
@@ -42,7 +42,7 @@ export default class App extends Component {
                             city: this.state.city,
                             day: convertTime(dt).day,
                             date: dt_txt,
-                            iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
+                            iconUrl: "https://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
                             type: weather[0].main,
                             averageTemp: `${convertTemperature(main.temp)}°C`,
                             minTemp: `${convertTemperature(main.temp_min)}°C`,
@@ -73,7 +73,7 @@ export default class App extends Component {
                 })
             });
             await position.then(state => {
-                const API = `http://api.openweathermap.org/data/2.5/forecast?lat=${this.state.position.latitude}&lon=${this.state.position.longitude}&appid=047ef33a4d9c38d3dddaa4b631c96d45`;
+                const API = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.position.latitude}&lon=${this.state.position.longitude}&appid=047ef33a4d9c38d3dddaa4b631c96d45`;
                 this.setState({isLoading: true});
                 fetch(API)
                     .then(response => response.json())
@@ -88,7 +88,7 @@ export default class App extends Component {
                                     city: data.city.name,
                                     day: convertTime(dt).day,
                                     date: dt_txt,
-                                    iconUrl: "http://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
+                                    iconUrl: "https://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png",
                                     type: weather[0].main,
                                     averageTemp: `${convertTemperature(main.temp)}°C`,
                                     minTemp: `${convertTemperature(main.temp_min)}°C`,
